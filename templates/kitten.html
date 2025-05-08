@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ kitten.name }} Details</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{ kitten.name }} Details</h1>
+      <div class="kitten-detail">
+        <img src="{{ kittens.webp }}" alt="{{ kitten.name }}" />
+        <p><strong>Types:</strong> {{ kitten.types | join(', ') }}</p>
+        <p><strong>Strength:</strong> {{ kitten.strength }}</p>
+      </div>
+      <!-- Chart container -->
+      <div class="kitten-stats">
+        <canvas id="statsChart"></canvas>
+      </div>
+      <p><a href="{{ url_for('index') }}">Back to all Pokémon</a></p>
+    </div>
+
+    <!-- Include Chart.js from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Convert Python lists to JavaScript arrays using Jinja's tojson filter
+      const statNames = {{ kitten.stat_names | tojson }};
+      const statValues = {{ kitten.stat_values | tojson }};
+
+      // Create a bar chart to display the Pokémon's base stats
+      const ctx = document.getElementById('statsChart').getContext('2d');
+      const statsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: statNames,
+          datasets: [{
+            label: 'Base Stats',
+            data: statValues,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
