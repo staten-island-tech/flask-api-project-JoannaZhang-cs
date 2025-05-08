@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>First 15 Exploding Kittens</title>
+    <!-- Link to your CSS stylesheet -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>First 15 Exploding Kittens</h1>
+      <div class="card-container">
+        <!-- Loop through each Pokémon and wrap each card in a link -->
+        {% for kitten in kittens %}
+        <a
+          href="{{ url_for('pokemon_detail', id=pokemon.id) }}"
+          class="card-link"
+        >
+          <div class="card">
+            <img src="{{ kittens.webp }}" alt="{{ kitten.name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ kitten.name }}</h5>
+              <p class="card-text">ID: {{ kitten.id }}</p>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
