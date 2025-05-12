@@ -37,7 +37,7 @@ def index():
 @app.route("/pokemon/<int:id>")
 def kitten_detail(id):
     # Get detailed info for the Kitten using its id
-    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{id}")
+    response = requests.get(f"https://superheroapi.com/api/access-token")
     data = response.json()
     
     # Extract extra details like types, height, and weight
@@ -66,5 +66,10 @@ if __name__ == '__main__':
 
 
 
-
-
+#api links
+#superheroes
+""" https://superheroapi.com/ """
+#deck of cards
+""" https://github.com/djetelina/pyCardDeck """
+#trivia
+""" https://opentdb.com/api_config.php """
