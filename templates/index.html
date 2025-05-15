@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>First 15 Exploding Kittens</title>
+    <title>Universities</title>
     <!-- Link to your CSS stylesheet -->
     <link
       rel="stylesheet"
@@ -11,19 +11,19 @@
   </head>
   <body>
     <div class="container">
-      <h1>First 15 Exploding Kittens</h1>
+      <h1>First 10 Universities</h1>
       <div class="card-container">
-        <!-- Loop through each Pokémon and wrap each card in a link -->
-        {% for kitten in kittens %}
+        <!-- Loop through each universities and wrap each card in a link -->
+        {% for uni in universities %}
         <a
-          href="{{ url_for('pokemon_detail', id=pokemon.id) }}"
+          href="{{ url_for('university_detail', id=uni.id) }}"
           class="card-link"
         >
           <div class="card">
-            <img src="{{ kittens.webp }}" alt="{{ kitten.name }}" />
+            <img src="https://via.placeholder.com/150" alt="{{ uni.name }}" />
             <div class="card-body">
-              <h5 class="card-title">{{ kitten.name }}</h5>
-              <p class="card-text">ID: {{ kitten.id }}</p>
+              <h5 class="card-title">{{ uni.name }}</h5>
+              <p class="card-text">ID: {{ uni.id }}</p>
             </div>
           </div>
         </a>
@@ -32,3 +32,12 @@
     </div>
   </body>
 </html>
+
+
+<!-- <ul>
+  {% for uni in universities %}
+    <li>
+      <a href="{{ url_for('university_detail', id=uni.id) }}">{{ uni.name }}</a> - {{ uni.country }}
+    </li>
+  {% endfor %}
+</ul> --> -->
