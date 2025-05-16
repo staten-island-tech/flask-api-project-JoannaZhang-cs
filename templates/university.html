@@ -29,8 +29,7 @@
       // Convert Python lists to JavaScript arrays using Jinja's tojson filter
       const statNames = {{ universities.stat_names | tojson }};
       const statValues = {{ universities.stat_values | tojson }};
-      return render_template('template.html', universities=universities)
-
+    </script>
       // Create a bar chart to display the Pokémon's base stats
       const ctx = document.getElementById('statsChart').getContext('2d');
       const statsChart = new Chart(ctx, {
