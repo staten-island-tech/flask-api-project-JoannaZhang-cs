@@ -2,8 +2,6 @@ from flask import Flask, render_template
 import requests
 
 app = Flask(__name__)
-app.jinja_env.policies['json.dumps_kwargs'] = {'sort_keys': False}
-app = Flask(__name__)
 
 response = requests.get("http://universities.hipolabs.com/search?name=middle")
 university_list = response.json()
