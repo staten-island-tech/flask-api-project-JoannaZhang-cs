@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Top 10 Universities</h1>
+        <h1>Top Universities</h1>
         <div class="card-container">
             {% for uni in universities %}
             <a href="{{ url_for('university_detail', id=uni.id) }}" class="card-link">
