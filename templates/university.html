@@ -10,8 +10,8 @@
         <h1>{{ university.name }} Details</h1>
         <div class="university-detail">
           <img src="{{ url_for('static', filename='university.webp') }}" alt="{{ university.name }}">
-          <p><strong>Types:</strong> {{ university.types | join(', ') }}</p>
-          <p><strong>Strength:</strong> {{ university.strength }}</p>
+          <p><strong>Country:</strong> {{ university.country }}</p>
+          <p><strong>Domain:</strong> {{ university.domains }}</p>
         </div>
         <!-- Chart container -->
         <div class="university-stats">

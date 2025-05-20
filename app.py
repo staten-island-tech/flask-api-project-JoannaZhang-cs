@@ -1,16 +1,18 @@
+#paginate data
+# add ways for user to search through universities either by name or country
 from flask import Flask, render_template
 import requests
 
 app = Flask(__name__)
 
-response = requests.get("http://universities.hipolabs.com/search?name=middle")
+response = requests.get("http://universities.hipolabs.com/search?name=har")
 university_list = response.json()
 print(university_list)
 
 @app.route("/")
 def index():
    
-    response = requests.get("http://universities.hipolabs.com/search?name=middle")
+    response = requests.get("http://universities.hipolabs.com/search?country=unitedstates")
     university_list = response.json()
     universities = []
     for idx, university in enumerate(university_list):
@@ -25,10 +27,10 @@ def index():
 
 @app.route("/universities/<int:id>")
 def university_detail(id):
-    response = requests.get("http://universities.hipolabs.com/search?name=middle")
+    response = requests.get("http://universities.hipolabs.com/search?name=har")
     university_list = response.json()
 
-    if 0 <= id < len(university_list):
+    if 0 <= id < len(university_list): 
         university = university_list[id]
         return render_template("university.html", university={
             'name': university.get('name', 'Unknown'),
