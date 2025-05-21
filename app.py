@@ -1,5 +1,8 @@
 #paginate data
-# add ways for user to search through universities either by name or country
+#add ways for user to search through universities either by name or country
+#different page numbers, user's page is rerouted when they click the NEXT button (going back to the pagination)
+#add a segment for the next button and styling
+#add segment for the rerouting
 from flask import Flask, render_template
 import requests
 
@@ -12,7 +15,7 @@ print(university_list)
 @app.route("/")
 def index():
    
-    response = requests.get("http://universities.hipolabs.com/search?country=unitedstates")
+    response = requests.get("http://universities.hipolabs.com/search?country=canada")
     university_list = response.json()
     universities = []
     for idx, university in enumerate(university_list):
@@ -28,6 +31,7 @@ def index():
 @app.route("/universities/<int:id>")
 def university_detail(id):
     response = requests.get("http://universities.hipolabs.com/search?name=har")
+    #rerouting goes here (page numbers)
     university_list = response.json()
 
     if 0 <= id < len(university_list): 
