@@ -74,24 +74,55 @@ body {
     margin-top: 5px;
   }
   
-  /* Kitten detail page styling */
-  .kitten-detail {
+  /* University detail page styling */
+  .university-detail {
     text-align: center;
   }
   
-  .kitten-detail img {
+  .university-detail img {
     width: 200px;
     height: auto;
     margin-bottom: 20px;
   }
   
-  .kitten-detail p {
+  .university-detail p {
     font-size: 1.1em;
   }
   
   /* Chart container styling */
-  .kitten-stats {
+  .university-stats {
     width: 100%;
     max-width: 600px;
     margin: 40px auto;
   }
+
+
+/* Search Form Styling */
+.search-form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.search-form input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-form button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #0056b3;
+}

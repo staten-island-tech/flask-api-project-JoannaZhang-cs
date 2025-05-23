@@ -11,12 +11,15 @@
         <div class="university-detail">
           <img src="{{ url_for('static', filename='university.webp') }}" alt="{{ university.name }}">
           <p><strong>Country:</strong> {{ university.country }}</p>
-          <p><strong>Domain:</strong> {{ university.domains }}</p>
+          <p><strong>Domain(s):</strong> {{ university.domains | join(', ') }}</p>
         </div>
         <!-- Chart container -->
+        {% if chart_url %}
         <div class="university-stats">
             <img src="data:image/png;base64,{{ chart_url }}" alt="University Statistics">
         </div>
+        {% endif %}
+        
         <p><a href="{{ url_for('index') }}">Back to all universities!!!!!</a></p>
     </div>
 </body>
