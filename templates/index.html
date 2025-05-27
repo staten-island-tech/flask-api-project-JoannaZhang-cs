@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--     #<title> isn't seen by user, in browser tab, and is inside <head>, h1 class will be visible by user, on actual page, and is inside <body>
- -->    <title>University Directory- World Wide</title>
+    <title>University Directory- World Wide</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -17,7 +15,8 @@
             <h1 class="page-title">Top Universities</h1>
 
             <form method="GET" action="{{ url_for('index') }}" class="search-form">
-                <input type="text" name="name" placeholder="Search universities..." value="{{ request.args.get('name', '') }}">
+                <input type="text" name="name" value="{{ name }}" placeholder="Search by name">
+                <input type="text" name="country" value="{{ country }}" placeholder="Search by country">
                 <button type="submit">Search</button>
             </form>
             <p>Showing results for "<strong>{{ request.args.get('name', 'harvard') }}</strong>" - Page {{ page }}</p>
@@ -26,32 +25,34 @@
 <body>
 
 
-        <main>
-            <div class="card-container">
-                {% for uni in universities %}
-                <a href="{{ url_for('university_detail', id=uni.id) }}" class="card-link">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='university.webp') }}" alt="{{ uni.name }}">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ uni.name }}</h2>
-                            <p class="card-text">ID: {{ uni.id }}</p>
-                            <p class="card-text">Country: {{ uni.country }}</p>
+<main>
+    <div class="card-container">
+        {% for uni in universities %}
+        <a href="{{ url_for('university_detail', id=uni.id) }}" class="card-link">
+            <div class="card">
+                <img src="{{ url_for('static', filename='university.webp') }}" alt="{{ uni.name }}">
+                <div class="card-body">
+                    <h2 class="card-title">{{ uni.name }}</h2>
+                    <p class="card-text">ID: {{ uni.id }}</p>
+                    <p class="card-text">Country: {{ uni.country }}</p>
 
-                        </div>
-                    </div>
-                </a>
-                {% endfor %}
+                </div>
             </div>
-        </main>
-
-
-        <footer>
-            <nav class="pagination">
-                <a href="{{ url_for('index', page=page-1) }}" {% if page <= 1 %}class="disabled"{% endif %}>Previous</a>
-                <span>Page {{ page }}</span>
-                <a href="{{ url_for('index', page=page+1) }}">NEXT</a>
-            </nav>
-        </footer>
+        </a>
+        {% endfor %}
     </div>
+</main>
+
+
+    <div>
+        {% if page > 1 %}
+            <a href="{{ url_for('index', page=page-1, name=name, country=country) }}">Previous</a>
+        {% endif %}
+        <span>Page {{ page }} of {{ (total // limit) + (1 if total % limit > 0 else 0) }}</span>
+        {% if page * limit < total %}
+            <a href="{{ url_for('index', page=page+1, name=name, country=country) }}">Next</a>
+        {% endif %}
+    </div>
+
 </body>
 </html>
