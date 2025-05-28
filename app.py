@@ -3,23 +3,25 @@ import requests
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
-    page = request.args.get('page', 1, type=int)
-    name = request.args.get('name', '', type=str)
-    country = request.args.get('country', '', type=str)
+    page = request.args.get('page', default= 1, type=int)
+    name = request.args.get('name', default='Toronto', type=str)
+    country = request.args.get('country', default = 'Canada', type=str)
     limit = 10
     offset = (page - 1) * limit
 
     
     params = {
         'name': name,
-        'country': country
+        'country': country,
+        'page' : page,
     }
 
-    response = requests.get("http://universities.hipolabs.com/search", params=params)
+    response = requests.get("http://universities.hipolabs.com/search?", params=params)
     paginated_universities = response.json()
-
+    print(paginated_universities)
 
     total = len(paginated_universities)
     paginated_universities = paginated_universities[offset:offset + limit]
@@ -46,14 +48,13 @@ def index():
 
 
 
-
 @app.route("/universities/<int:id>")
 def university_detail(id):
     response = requests.get("http://universities.hipolabs.com/search?name=harvard")
     university = response.json()
 
-    if 0 <= id < len(university_list):
-        university = university_list[id]
+    if 0 <= id < len(university):
+        university = university[id]
         return render_template("detail.html", university=university)
     else:
         return "University not found", 404
