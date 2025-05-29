@@ -22,6 +22,7 @@ def index():
     response = requests.get("http://universities.hipolabs.com/search?", params=params)
     paginated_universities = response.json()
     print(paginated_universities)
+    
 
     total = len(paginated_universities)
     paginated_universities = paginated_universities[offset:offset + limit]
@@ -47,7 +48,6 @@ def index():
     
 
 
-
 @app.route("/universities/<int:id>")
 def university_detail(id):
     response = requests.get("http://universities.hipolabs.com/search?name=harvard")
@@ -55,7 +55,7 @@ def university_detail(id):
 
     if 0 <= id < len(university):
         university = university[id]
-        return render_template("detail.html", university=university)
+        return render_template("university.html", university=university)
     else:
         return "University not found", 404
 

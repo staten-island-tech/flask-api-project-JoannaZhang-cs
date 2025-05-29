@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ university.name }} Details</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -13,13 +13,11 @@
           <p><strong>Country:</strong> {{ university.country }}</p>
           <p><strong>Domain(s):</strong> {{ university.domains | join(', ') }}</p>
         </div>
-        <!-- Chart container -->
         {% if chart_url %}
         <div class="university-stats">
             <img src="data:image/png;base64,{{ chart_url }}" alt="University Statistics">
         </div>
         {% endif %}
-        
         <p><a href="{{ url_for('index') }}">Back to all universities!!!!!</a></p>
     </div>
 </body>

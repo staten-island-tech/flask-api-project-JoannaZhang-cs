@@ -49,8 +49,8 @@
             <a href="{{ url_for('index', page=page-1, name=name, country=country) }}">Previous</a>
         {% endif %}
         <span>Page {{ page }} of {{ (total // limit) + (1 if total % limit > 0 else 0) }}</span>
-        {% if page * limit < total %}
-            <a href="{{ url_for('index', page=page+1, name=name, country=country) }}">Next</a>
+        {% if page * limit < total %} <!-- checks if current page is not last page -->
+            <a href="{{ url_for('index', page=page+1, name=name, country=country) }}">NEXT</a>
         {% endif %}
     </div>
 
