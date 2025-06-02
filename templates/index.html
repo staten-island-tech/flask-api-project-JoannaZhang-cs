@@ -12,14 +12,14 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="page-title">Top Universities</h1>
+            <h1 class="page-title">Universities</h1>
 
             <form method="GET" action="{{ url_for('index') }}" class="search-form">
                 <input type="text" name="name" value="{{ name }}" placeholder="Search by name">
                 <input type="text" name="country" value="{{ country }}" placeholder="Search by country">
                 <button type="submit">Search</button>
             </form>
-            <p>Showing results for "<strong>{{ request.args.get('name', 'harvard') }}</strong>" - Page {{ page }}</p>
+            <p>Showing results for "<strong>{{ request.args.get('name') }}</strong>" - Page {{ page }}</p>
         </header>
 
 <body>

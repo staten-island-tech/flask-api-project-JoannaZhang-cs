@@ -50,7 +50,7 @@ def index():
 
 @app.route("/universities/<int:id>")
 def university_detail(id):
-    response = requests.get("http://universities.hipolabs.com/search?name=harvard")
+    response = requests.get("http://universities.hipolabs.com/search?name=toronto")
     university = response.json()
 
     if 0 <= id < len(university):
@@ -58,6 +58,8 @@ def university_detail(id):
         return render_template("university.html", university=university)
     else:
         return "University not found", 404
+    
+
 
 
 if __name__ == '__main__':
